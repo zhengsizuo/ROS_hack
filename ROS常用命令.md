@@ -4,7 +4,7 @@
     $ mkdir -p ~/catkin_ws/src  //创建文件夹
     $ cd ~/catkin_ws/src        //定位到src
     $ catkin_init_workspace     //对工作空间进行初始化
-    *编译*
+    编译
     $ cd ~/catkin_ws/  
     $ catkin_make
 ### 创建功能包
@@ -15,7 +15,7 @@
 - rostopic info [TOPIC_NAME]:查看话题的发布者、订阅者以及类型
 - rostopic ehco [TOPIC_NAME]:打印话题所包含的消息的内容
 
-**查看服务与消息类似**
+*查看服务与消息类似*
 - rosservice list
 
 ### 有关消息
@@ -25,7 +25,7 @@ rosmsg show bmirobot_msg/Robot_ctr.msg
 rsosrv show [SERVICE_NAME]
 
 *发布消息：*
-- publish speed topic:
+- *publish speed topic*:
 rostopic pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0, z: 0}, angular: {x: 0, y: 0, z: 0}}'
 
 ### 可视化话题之间的关系:
