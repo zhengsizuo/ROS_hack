@@ -41,3 +41,7 @@ rostopic pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0,
 
 ### 安装ros里面缺失的包
 sudo apt install ros-kinetic-[PKG_NAME]
+
+### 清理ros log垃圾
+rosclean check
+rosclean purge
