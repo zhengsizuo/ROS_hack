@@ -1,0 +1,7 @@
+<launch>
+  <node name="bmi_proximity_driver" pkg="bmirobot_hw" type="bmirobot_proximity_driver"  args="1" respawn="true" output="screen"/>
+  <node name="distance_control" pkg="bmirobot_grasp" type="distance_control" args="1" respawn="true" output="screen" />
+  <node name="rviz" pkg="rviz" type="rviz"/>
+  <rosparam param="deviceIP">"192.168.128.112"</rosparam>
+  <rosparam param="savedata">"false"</rosparam>
+</launch>

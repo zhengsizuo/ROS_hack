@@ -1,0 +1,31 @@
+bmirobot:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+  # Position Controllers ---------------------------------------
+  cart_controller:
+    type: position_controllers/BmirobotControlCart
+    root_name: base_link
+    tip_name: link7
+    k_posture: 25.0
+    jacobian_inverse_damping: 0.01
+    pose_command_filter: 0.01
+    fb_trans:
+      p: 20.0
+      i: 0.5
+      d: 0.0
+      i_clamp: 1.0
+    fb_rot:
+      p: 4.5
+      i: 0.1
+      d: 0.0
+      i_clamp: 0.2
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+      - joint7

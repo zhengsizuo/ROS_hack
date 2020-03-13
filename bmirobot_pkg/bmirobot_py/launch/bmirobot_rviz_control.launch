@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<launch>
+  
+  <!-- ros_control trajectory control dof arm launch file -->
+  <include file="$(find bmirobot_control)/launch/bmirobotv5_two_control.launch" />    
+
+  <!-- moveit launch file -->
+  <include file="$(find robotarm_moveit)/launch/robotarm_moveit_planning_execution.launch" />    
+
+	<!-- publish joint states -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<param name="/use_gui" value="false"/>
+		<rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
+	</node>
+</launch>

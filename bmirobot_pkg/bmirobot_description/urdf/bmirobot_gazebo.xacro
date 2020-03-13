@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="bmirobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <!-- Constants for robot dimensions -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="mass" value="1" /> <!-- arbitrary value for mass -->
+  <xacro:property name="width" value="0.1" /> <!-- Square dimensions (widthxwidth) of beams -->
+  <xacro:property name="height1" value="2" /> <!-- Link 1 -->
+  <xacro:property name="height2" value="1" /> <!-- Link 2 -->
+  <xacro:property name="height3" value="1" /> <!-- Link 3 -->
+  <xacro:property name="camera_link" value="0.025" /> <!-- Size of square 'camera' box -->
+  <xacro:property name="axel_offset" value="0.05" /> <!-- Space btw top of beam and the each joint -->
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find bmirobot_description)/urdf/bmirobot.xacro" />
+  <xacro:include filename="$(find bmirobot_description)/urdf/bmirobot.gazebo" />
+  <!-- Import Rviz colors -->
+  <!--xacro:include filename="$(find bmirobot_description)/urdf/materials.xacro" /-->
+   <!--link name="camera_depth_optical_frame">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+ 
+  <joint name="camera_depth_optical_frame_joint" type="fixed">
+    <axis xyz="1 0 0" />
+    <origin xyz="0.0 0.0 0.0" rpy=" ${-0.5 * pi} ${0.0 * pi} ${-0.5 * pi}"/>
+    <parent link="rgbd_joint"/>
+    <child link="camera_depth_optical_frame"/>
+  </joint-->
+
+
+
+<!-- rgbd Camera -->
+
+  <!--link name="camera_depth_optical_frame">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+  <joint name="camera_depth_optical_frame_joint" type="fixed">
+    <axis xyz="1 0 0" />
+    <origin xyz="0 0.25 0.2" rpy="${0.2 * pi} ${-1 * pi} ${0.5 * pi}"/>
+    <parent link="base_link"/>
+    <child link="camera_depth_optical_frame"/>
+  </joint-->
+
+  
+
+</robot>

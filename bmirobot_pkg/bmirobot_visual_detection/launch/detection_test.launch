@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="detection" pkg="object_recognition_core" type="detection"
+    respawn="false" output="screen" args="-c  $(find object_recognition_tabletop)/conf/detection.object.ros.ork">
+  </node>
+
+</launch>

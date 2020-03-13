@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!--node name="bmihw" pkg="bmirobot_hw" type="bmirobot_hw_node" args="1" respawn="true" output="screen" /-->
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find bmirobot)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+</launch>

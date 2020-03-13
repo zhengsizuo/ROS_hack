@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  	 <rosparam param="deviceIP">"192.168.1.181"</rosparam>
+	 <rosparam param="savedata">"false"</rosparam>
+
+     <node name="bmi_ethernet_driver" pkg="bmirobot_hw" type="bmirobot_ethernet_driver" args="1" respawn="true" output="screen" />
+     <node name="bmi_motor_controller" pkg="bmirobot_hw" type="bmirobotv4_hw" args="1" respawn="true" output="screen" />
+
+     <node pkg="tf" type="static_transform_publisher" name="calibrate_broadcaster" args="0.386 0 -0.0288 0 0 0 1 link5 link_calibration 100" />
+     <node pkg="tf" type="static_transform_publisher" name="link8_broadcaster" args="-0.0438   -0.2310    0.1356   0.0007    0.4491   -0.0282    0.8930 /base_link /camera_link 100" />
+
+  <include file="$(find bmirobotv4)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+</launch>

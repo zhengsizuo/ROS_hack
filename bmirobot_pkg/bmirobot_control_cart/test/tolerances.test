@@ -1,0 +1,4 @@
+<launch>
+  <rosparam command="load" ns="test" file="$(find bmirobot_control_cart)/test/tolerances.yaml" />
+  <test test-name="tolerances_test" pkg="bmirobot_control_cart" type="tolerances_test"/>
+</launch>

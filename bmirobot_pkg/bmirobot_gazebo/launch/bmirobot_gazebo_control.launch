@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <!-- Launch Gazebo  -->
+  <include file="$(find bmirobot_gazebo)/launch/bmirobot_two_world.launch" />   
+ 
+  <!-- ros_control trajectory control dof arm launch file -->
+  <include file="$(find bmirobot_control)/launch/bmirobotv5_two_control_group.launch" />    
+
+  
+</launch>

@@ -1,0 +1,39 @@
+bmirobot:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+  # Position Controllers ---------------------------------------
+  r_cart:
+    type: robot_mechanism_controllers/JTCartesianController
+    root_name: base_link
+    tip_name: link8
+    k_posture: 25.0
+    jacobian_inverse_damping: 0.01
+    pose_command_filter: 0.01
+    cart_gains:
+      trans:
+        p: 800.0
+        d: 15.0
+      rot:
+        p: 80.0
+        d: 1.2
+    joint_feedforward:
+      joint1: 3.33
+      joint2: 1.16
+      joint3: 0.1
+      joint4: 0.25
+      joint5: 0.133
+      joint6: 0.0727
+      joint7: 0.0727
+    joint_max_effort:
+      joint1: 11.88
+      joint2: 11.64
+      joint3: 6.143
+      joint4: 6.804
+      joint5: 8.376
+      joint6: 5.568
+      joint7: 5.568
+
+    vel_saturation_trans: 2.0
+    vel_saturation_rot: 4.0

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--node name="r200reconfigure" pkg="dynamic_reconfigure" type="dynparam"
+    respawn="false" output="screen" args="set /camera/driver r200_dc_preset 3">
+  </node-->
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <!--include file="$(find ar_track_alvar)/launch/pr2_indiv_no_kinect.launch">
+  </include-->
+  
+  <node name="detection" pkg="object_recognition_core" type="detection"
+    respawn="false" output="screen" args="-c  $(find object_recognition_tabletop)/conf/detection.object.ros.ork">
+  </node>
+
+</launch>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+
+
+	 <rosparam param="right_IP">"192.168.1.181"</rosparam>
+	 <rosparam param="right_port">10001</rosparam>
+	 <!--<rosparam param="180IP">"192.168.2.181"</rosparam>
+	 <rosparam param="180port">10001</rosparam>-->
+	 <rosparam param="savedata">"false"</rosparam>
+
+   <rosparam param="home_rjoint1">0.0</rosparam>
+	 <rosparam param="home_rjoint2">0.0</rosparam>
+	 <rosparam param="home_rjoint3">0.0</rosparam>
+	 <rosparam param="home_rjoint4">-0.0</rosparam>
+	 <rosparam param="home_rjoint5">-0.0</rosparam>
+	 <rosparam param="home_rjoint6">-0.0</rosparam>
+	 <rosparam param="home_rjoint7">0.0</rosparam>
+	 <rosparam param="home_rjoint8">0.0</rosparam>  
+
+     <node name="bmiright_ethernet_driver" pkg="bmirobot_hw" type="bmiright_ethernet_driver" args="1" respawn="true" output="screen" />
+     <!--<node name="bmi_ethernet_driver" pkg="bmirobot_hw" type="bmirobot_ethernet_driver" args="1" respawn="true" output="screen" />-->
+     <node name="bmirobotv51_zhs" pkg="bmirobot_hw" type="bmirobotv51_zhs" args="1" respawn="true" output="screen" />
+
+	 <!--node name="bmi_motor_record" pkg="bmirobot_tools" type="record_msg" args="1" respawn="true" output="screen" /-->
+
+     <node pkg="tf" type="static_transform_publisher" name="grasp_broadcaster" args="0.160 0.01 0 0 0 0 1 link8 link_calibration 100" />
+     <!--node pkg="tf" type="static_transform_publisher" name="link8_broadcaster" args=" -0.064995775811727  0.055148419121836  0.272492487098256  -0.366583157600761   0.359641042018234   0.614503812995140 0.598882436938944  /base_link /camera_link 200" /-->
+
+  <include file="$(find robotarm_moveit)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+ 
+
+</launch>

@@ -1,0 +1,13 @@
+<launch>
+  <include file="$(find robotarm_moveit)/launch/robotarm_moveit_planning_execution.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="robot_model_and_robot_state_tutorial"
+        pkg="bmirobot_py"
+        type="robot_model_and_robot_state_tutorial"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find robotarm_moveit)/config/kinematics.yaml"/>
+  </node>
+</launch>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server  joint_state_controller-->
+  <rosparam file="$(find bmirobot_control)/config/bmirobot_control_pr22.yaml" command="load"/>
+
+  <!-- load the controllers 
+  <node name="controller_spawner" pkg="pr2_controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/bmirobot" args="r_cart joint_state_controller"/>-->
+    <!---->
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/bmirobot/joint_states" />
+  </node>
+
+</launch>

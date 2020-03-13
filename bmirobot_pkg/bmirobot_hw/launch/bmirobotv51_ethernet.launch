@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+
+
+	 <rosparam param="180IP">"192.168.1.180"</rosparam>
+	 <rosparam param="180port">10000</rosparam>
+	 <rosparam param="181IP">"192.168.2.181"</rosparam>
+	 <rosparam param="181port">10001</rosparam>
+
+	 <rosparam param="savedata">"false"</rosparam>
+
+     <node name="bmileft_ethernet_driver" pkg="bmirobot_hw" type="bmileft_ethernet_driver" args="1" respawn="true" output="screen" />
+     <node name="bmiright_ethernet_driver" pkg="bmirobot_hw" type="bmiright_ethernet_driver" args="1" respawn="true" output="screen" />
+
+ 
+
+</launch>

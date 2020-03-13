@@ -1,0 +1,21 @@
+int32[8] mt_mode
+int32[8] mt_Gpst
+int32[8] mt_Cpst
+int32[8] mt_Lpst
+int32[8] mt_Gspd
+int32[8] mt_Cspd
+int32[8] mt_Lspd
+int32[8] mt_Gtq
+int32[8] mt_PWMduty
+int32[8] mt_ecd
+int32[8] mt_ecdcnt
+int32[8] mt_Ctime
+int32[8] mt_Rtime
+int32[8] mt_sysclk
+int32[8] mt_smptime
+int32[8] mt_cputmp
+int32[8] mt_mttmp
+int32[8] mt_invlt
+int32[8] mt_incrt
+int32[8] mt_PWMfrq
+

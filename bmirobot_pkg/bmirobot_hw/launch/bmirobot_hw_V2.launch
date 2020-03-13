@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find bmirobot)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="bmihw" pkg="bmirobot_hw" type="bmirobot_hw_node" args="1" respawn="true" output="screen" />
+
+
+<node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0.0975 0 0 0 0 0 1 link8 link_calibration 100" />
+<node pkg="tf" type="static_transform_publisher" name="link8_broadcaster" args="-0.163173 0.140597 0.399196 -0.029340 0.267541 -0.048012 0.961902 /base_link /camera_link 100" />
+
+</launch>
