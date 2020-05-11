@@ -1,0 +1,20 @@
+<launch>
+  <include file="$(find robotarm_moveit)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <!--<node name="robot_model_and_robot_state_tutorial"
+        pkg="moveit_tutorials"
+        type="robot_model_and_robot_state_tutorial"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find robotarm_moveit)/config/kinematics.yaml"/>
+  </node>-->
+  <node name="bmirobot_IK"
+        pkg="moveit_tutorials"
+        type="bmirobot_IK"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find robotarm_moveit)/config/kinematics.yaml"/>
+  </node>
+</launch>

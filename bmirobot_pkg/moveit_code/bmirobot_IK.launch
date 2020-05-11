@@ -1,0 +1,14 @@
+<launch>
+  <!--<include file="$(find robotarm_moveit)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>-->
+
+  
+  <node name="bmirobot_IK_touch"
+        pkg="moveit_tutorials"
+        type="bmirobot_IK_touch"
+        respawn="false" output="screen">
+   <!-- <rosparam command="load"
+              file="$(find robotarm_moveit)/config/kinematics.yaml"/>-->
+  </node>
+</launch>
