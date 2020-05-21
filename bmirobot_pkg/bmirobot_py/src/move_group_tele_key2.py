@@ -13,8 +13,8 @@ import geometry_msgs.msg
 from math import pi
 from std_msgs.msg import String, Float64MultiArray
 
-motion_step1 = [-0.3, 0, -pi/4+0.2, 0, 0, 0, 0]
-motion_step2 = [-0.3, 0, -pi/4, 0, 0, 0, 0]
+motion_step1 = [0, 0, -pi/4, -pi/8, 0, 0, 0]
+motion_step2 = [0, 0, -pi/4+0.05, 0, 0, 0, 0]
 motion_step3 = [0, 0, pi/8, 0, 0, 0, 0]
 motion_step4 = [0]*7
 
@@ -79,7 +79,7 @@ def main():
       rospy.loginfo("Current phase: grasping")
       move_gruop.go_to_joint_state(motion_step2)
       rospy.sleep(1)
-      move_gruop.move_hand(-0.15)
+      move_gruop.move_hand(-0.2)
       rospy.loginfo("End effector close!")
       rospy.sleep(1)
       rospy.loginfo("Slightly rise the elbow!")

@@ -45,3 +45,14 @@ sudo apt install ros-kinetic-[PKG_NAME]
 ### 清理ros log垃圾
 - rosclean check
 - rosclean purge
+
+### rosbag消息录制与回放
+- 录制所有话题：rosbag record -a
+- 录制具体话题：rosbag record /topic1 /topic12
+- 回放：rosbag play [your bagfile name]
+- 按一定频率回放：rosbag play -r 3 [your bagfile name] (三倍速率)
+- 查看包含的信息：rosbag info [your bagfile name]
+
+
+
+
