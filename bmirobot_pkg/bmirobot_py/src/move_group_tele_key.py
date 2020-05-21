@@ -69,7 +69,7 @@ def main():
       rospy.loginfo("Current phase: pre-grasping")
       move_gruop.go_to_joint_state(motion_step1)
 
-      move_gruop.move_hand(0.5)
+      move_gruop.move_hand(-0.1)
       rospy.loginfo("End effector open!")
       step += 1
       rospy.sleep(2)
@@ -78,7 +78,7 @@ def main():
       rospy.loginfo("Current phase: grasping")
       move_gruop.go_to_joint_state(motion_step2)
       rospy.sleep(1)
-      move_gruop.move_hand(-0.15)
+      move_gruop.move_hand(-0.4)
       rospy.loginfo("End effector close!")
       rospy.sleep(1)
       rospy.loginfo("Slightly rise the elbow!")
@@ -91,7 +91,7 @@ def main():
           step += 1
       if recieve_key == 'N' or recieve_key == 'n':
           move_gruop.go_to_joint_state(motion_step4)
-          move_gruop.move_hand(0.0)
+          move_gruop.move_hand(-0.1)
           rospy.loginfo("Returned to the normal state!")
           step = 0
       rospy.sleep(2)
@@ -101,7 +101,7 @@ def main():
       move_gruop.go_to_joint_state(motion_step3)
       print "============ Press `Enter` to deliver the bottle(press ctrl-d to exit) ..."
       raw_input()
-      move_gruop.move_hand(0.5)
+      move_gruop.move_hand(0.1)
       rospy.loginfo("Delivered the bottle!")
       step += 1
       rospy.sleep(2)
@@ -109,7 +109,7 @@ def main():
     if step == 3:
       rospy.loginfo("Current phase:returning")
       move_gruop.go_to_joint_state(motion_step4)
-      move_gruop.move_hand(0.0)
+      move_gruop.move_hand(-0.1)
       rospy.loginfo("Returned to the normal state!")
       step = 0
       rospy.sleep(5)
