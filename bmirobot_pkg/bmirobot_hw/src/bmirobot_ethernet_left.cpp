@@ -241,6 +241,7 @@ main(int argc, char **argv)
 		//sendto(sock2, sendbuf, strlen(sendbuf), 0, (struct sockaddr *)&servaddr2, sizeof(servaddr2));
 		sleep(1);
 		ret = recvfrom(sock1, recvbuf, sizeof(recvbuf), 0, (struct sockaddr *)&servaddr1, &socklen);
+		ROS_INFO("recv1:%d",ret);
 		if(ret !=-1)
 			break;
 	}
@@ -315,7 +316,7 @@ main(int argc, char **argv)
 					}
 					mtfdout<<endl;
 				}
-				//ROS_INFO("left :%d,%d,%d",ret,fdctrmsg.mt_mode[0],fdctrmsg.mt_Cpst[0]);
+				ROS_INFO("left :%d,%d,%d",ret,fdctrmsg.mt_mode[0],fdctrmsg.mt_Cpst[0]);
 		
 				for(int i=0;i<8;i++)
 				{

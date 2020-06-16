@@ -53,6 +53,7 @@ sudo apt install ros-kinetic-[PKG_NAME]
 - 按一定频率回放：rosbag play -r 3 [your bagfile name] (三倍速率)
 - 查看包含的信息：rosbag info [your bagfile name]
 
-
+### tips
+- set respawn="false" to kill the rosnode
 
 

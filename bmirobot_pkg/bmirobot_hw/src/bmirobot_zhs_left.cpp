@@ -219,10 +219,20 @@ void init_left_robot()
 				0,      	0,      	0,      	0,      0,      -0.5,   -0.5,   0,
 				0,      	0,      	0,      	0,      0,      0,      0,      1;
 
+    ros::NodeHandle node;
 	char tmp[100];
 	sprintf(tmp,"/home/bmi/bmiproject/ws_pc/data/left-mtctr.csv");
 	std::cout<<tmp<<endl;
    	lfileout.open(tmp, std::ofstream::out | std::ofstream::binary);
+
+   	node.getParam("/home_ljoint1", lhome_pos[0]);
+	node.getParam("/home_ljoint2", lhome_pos[1]);
+	node.getParam("/home_ljoint3", lhome_pos[2]);
+	node.getParam("/home_ljoint4", lhome_pos[3]);
+	node.getParam("/home_ljoint5", lhome_pos[4]);
+	node.getParam("/home_ljoint6", lhome_pos[5]);
+	node.getParam("/home_ljoint7", lhome_pos[6]);
+	node.getParam("/home_ljoint8", lhome_pos[7]);
 
 }
 

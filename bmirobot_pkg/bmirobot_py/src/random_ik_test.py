@@ -1,5 +1,9 @@
 #!/usr/bin/env python
-
+"""
+Randomly generate some point to test IK serviece.
+Authour: zhs 
+Date: 2020.5.23
+"""
 import logging
 logger = logging.getLogger("write." + __name__)
 logger.setLevel(logging.DEBUG)
@@ -22,20 +26,44 @@ from moveit_msgs.msg import PositionIKRequest, RobotState, DisplayRobotState
 
 from visualization_msgs.msg import Marker
 from geometry_msgs.msg import PoseStamped
+from sensor_msgs.msg import JointState
+from std_msgs.msg import String, Float64MultiArray
+
+from util_functions import move_joints, MoveGroupPythonInteface
+
+def joint_states_callback(msg):
+    print(msg.name)
+    # for k in range(5):
+    #     for i in range(len(msg.name)):
+    #         joint_name = "arm_joint_" + str(k + 1)
+    #         if(msg.name[i] == joint_name):
+    #             self.configuration[k] = msg.position[i]
 
 FRAME = "world"
 
 rospy.wait_for_service('compute_ik')
 compute_ik = rospy.ServiceProxy('compute_ik', GetPositionIK)
 
-pub_markers = rospy.Publisher('visualization_marker', Marker,queue_size=1)
+#rospy.Subscriber('/bmirobot/joint_states', JointState, joint_states_callback)
+pub_markers = rospy.Publisher('visualization_marker', Marker, queue_size=1)
 pub_ik_target = rospy.Publisher('ik_target', PoseStamped, queue_size=1)
+pub_dr = rospy.Publisher('display_robot_state', DisplayRobotState)
+joint_pub = rospy.Publisher('/bmirobot/right_group_controller/command', Float64MultiArray, queue_size=1)
 
 rospy.init_node("sample_ik_reachable")
+#rospy.rate(10)
 
 tl = tf.TransformListener()
 
 id = 0
+initial_state = RobotState()
+# joints_name = ['left_hand_joint1', 'left_hand_joint2', 'left_joint1', 'left_joint2', 'left_joint3', 'left_joint4', 'left_joint5', 'left_joint6', 'left_joint7', 
+# 'right_hand_joint1', 'right_hand_joint2', 'right_joint1', 'right_joint2', 'right_joint3', 'right_joint4', 'right_joint5', 'right_joint6', 'right_joint7']
+joints_name = ['right_joint1', 'right_joint2', 'right_joint3', 'right_joint4', 'right_joint5', 'right_joint6', 'right_joint7']
+initial_state.joint_state.name = joints_name
+initial_state.joint_state.position = [0]*7
+print(initial_state)
+
 
 def get_ik(target, group = "right_arm"):
     """
@@ -45,8 +73,9 @@ def get_ik(target, group = "right_arm"):
     
     service_request = PositionIKRequest()
     service_request.group_name = group
-    #service_request.robot_state = initial_state
-    #service_request.ik_link_name = "pen_link"
+    service_request.robot_state = initial_state
+    service_request.ik_link_name = "right_link8"
+    
     service_request.pose_stamped = target
     service_request.timeout.secs= 0.1
     service_request.avoid_collisions = False
@@ -72,9 +101,9 @@ def cube(position, ok = True):
     sheet.pose.position = position
     sheet.id = id
     sheet.type = Marker.CUBE
-    sheet.scale.x = 0.002
-    sheet.scale.y = 0.002
-    sheet.scale.z = 0.002
+    sheet.scale.x = 0.02
+    sheet.scale.y = 0.02
+    sheet.scale.z = 0.02
     sheet.color.b = .0
     if ok:
         sheet.color.g = 1.0
@@ -88,21 +117,22 @@ def cube(position, ok = True):
 
 def generate_pose():
     random_pose = np.random.randn(3)
-    x = 0.3*random_pose[0] + 0.4
-    y = 0.4*random_pose[1]
-    z = 0.4*random_pose[2] + 0.4
+    x = 0.1*random_pose[0] + 0.341
+    y = 0.1*random_pose[1] + 0.24
+    z = 0.1*random_pose[2] + 0.2
     return x, y, z
 
 if __name__ == "__main__":
 
     logger.info("Sampling space around " + FRAME)
+    rs = DisplayRobotState()
+    #move_group = MoveGroupPythonInteface()
     target = PoseStamped()
     target.header.frame_id = FRAME
-    
 
     tl.waitForTransform("/right_link8",  FRAME, rospy.Time(), rospy.Duration(1))
     t = tl.getLatestCommonTime("/right_link8", FRAME)
-    position, quaternion = tl.lookupTransform(FRAME, "/right_link8", t)
+    position, quaternion = tl.lookupTransform(FRAME, "/right_link8", t)  # /right_link in the /world FRAME
 
     qx,qy,qz,qw = quaternion
     target.pose.orientation.x = qx
@@ -112,10 +142,10 @@ if __name__ == "__main__":
 
     while not rospy.is_shutdown():
 
-        # x = (random.random() - 0.5) / 10
-        # y = (random.random() - 0.5) / 10
-        # z = (random.random() - 0.5) / 20
+        if id > 10:
+            break
         x, y, z = generate_pose()
+        #x, y, z = 0.341, 0.24, 0.2 # initial pose in the /world frame
         target.pose.position.x = x
         target.pose.position.y = y
         target.pose.position.z = z
@@ -130,3 +160,15 @@ if __name__ == "__main__":
             pub_markers.publish(cube(target.pose.position, False))
         else:
             pub_markers.publish(cube(target.pose.position, True))
+            #initial_state = res.solution
+            rs.state = res.solution
+            #position = initial_state.joint_state.position
+            # print(position[11:])
+            position = rs.state.joint_state.position[11:]
+            print(", ".join(str(x) for x in position))
+
+            move_joints(joint_pub, position)
+            pub_dr.publish(rs)
+            #move_group.go_to_joint_state(position)
+
+            rospy.sleep(0.2)

@@ -12,7 +12,7 @@ import geometry_msgs.msg
 from math import pi
 from std_msgs.msg import String, Float64MultiArray
 
-motion_step1 = [0, 0, -pi/4, -pi/8, 0, 0, 0]
+motion_step1 = [pi/4, -pi/4, -pi/4, -pi/8, 0, 0, 0]
 motion_step2 = [0, 0, -pi/4+0.05, 0.03, 0, 0, 0]
 motion_step3 = [0, 0, pi/8, 0, 0, 0, 0]
 motion_step4 = [0]*7

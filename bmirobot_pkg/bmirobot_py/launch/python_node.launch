@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+
+  <node name="move_group_tele_key2" pkg="bmirobot_py" type="move_group_tele_key2.py" respawn="false"  output="screen">
+  </node>
+
+</launch>

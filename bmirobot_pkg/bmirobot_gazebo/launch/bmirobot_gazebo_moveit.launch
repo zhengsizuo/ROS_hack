@@ -5,8 +5,8 @@
   <include file="$(find bmirobot_gazebo)/launch/bmirobot_two_world.launch" />   
  
 
-  <!-- ros_control trajectory control dof arm launch file -->
-  <include file="$(find bmirobot_control)/launch/bmirobotv5_two_control.launch" />    
+  <!-- ros_control trajectory control dof arm launch file, control_group for /bmirobot/right_group_controller/command -->
+  <include file="$(find bmirobot_control)/launch/bmirobotv5_two_control.launch" />
 
   <!-- moveit launch file -->
   <include file="$(find robotarm_moveit)/launch/robotarm_moveit_planning_execution.launch" />    
