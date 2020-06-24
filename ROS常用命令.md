@@ -26,7 +26,12 @@ rsosrv show [SERVICE_NAME]
 
 *发布消息：*
 - *publish speed topic*:
-rostopic pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0, z: 0}, angular: {x: 0, y: 0, z: 0}}'
+rostopic pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0, z: 0}, angular: {x: 0, y: 0, z: 0}}'   
+- 查看消息发布频率：
+rostopic hz [TOPIC_NAME]
+- 查看消息类型
+rostopic type [TOPIC_NAME]
+
 
 ### 可视化话题之间的关系:
 - rqt_graph
