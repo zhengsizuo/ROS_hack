@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Author: Zheng Haosi
 Date: 2020.3.4
@@ -15,7 +16,7 @@ from std_msgs.msg import String, Float64MultiArray
 from omni_msgs.msg import OmniButtonEvent
 from geometry_msgs.msg import PoseStamped
 
-motion_step1 = [0, 0, -pi/4, -pi/8, 0, 0, 0]
+motion_step1 = [0, 0, -pi/8, -pi/8, 0, 0, 0]
 motion_step2 = [0, 0, -pi/4+0.05, 0.03, 0, 0, 0]
 motion_step3 = [0, 0, pi/8, 0, 0, 0, 0]
 motion_step4 = [0]*7

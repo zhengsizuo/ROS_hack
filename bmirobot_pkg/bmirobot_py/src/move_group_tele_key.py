@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Author: Zheng Haosi
 Date: 2020.2.21

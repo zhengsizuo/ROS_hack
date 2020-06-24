@@ -13,6 +13,7 @@
 	 <rosparam param="home_rjoint6">-0.0</rosparam>
 	 <rosparam param="home_rjoint7">0.0</rosparam>
 	 <rosparam param="home_rjoint8">0.0</rosparam>
+	<node name="bmiright_ethernet_driver" pkg="bmirobot_hw" type="bmiright_ethernet_driver" args="1" respawn="true" output="screen" />
 
 	 <rosparam param="left_IP">"192.168.1.182"</rosparam>
 	 <rosparam param="left_port">10000</rosparam>
@@ -27,9 +28,9 @@
 	 <rosparam param="home_ljoint7">0.0</rosparam>
 	 <rosparam param="home_ljoint8">0.0</rosparam>
 
-     <node name="bmileft_ethernet_driver" pkg="bmirobot_hw" type="bmileft_ethernet_driver" args="1" respawn="true" output="screen" />
-     <node name="bmiright_ethernet_driver" pkg="bmirobot_hw" type="bmiright_ethernet_driver" args="1" respawn="true" output="screen" />-->
-     <node name="bmirobotv51_zhs" pkg="bmirobot_hw" type="bmirobotv51_zhs" args="1" respawn="true" output="screen" />
+     <node name="bmileft_ethernet_driver" pkg="bmirobot_hw" type="bmileft_ethernet_driver" args="1" respawn="false" output="screen" />
+     <!--<node name="bmiright_ethernet_driver" pkg="bmirobot_hw" type="bmiright_ethernet_driver" args="1" respawn="true" output="screen" />-->
+     <node name="bmirobotv51_zhs" pkg="bmirobot_hw" type="bmirobotv51_zhs" args="1" respawn="false" output="screen" />
 
 	 <!--node name="bmi_motor_record" pkg="bmirobot_tools" type="record_msg" args="1" respawn="true" output="screen" /-->
 

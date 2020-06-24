@@ -1,6 +1,7 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
-Randomly generate some point to test IK serviece.
+Read down-sampled trajectries CSV file to test IK serviece.
 Authour: zhs 
 Date: 2020.5.23
 """
@@ -43,9 +44,9 @@ rospy.wait_for_service('compute_ik')
 compute_ik = rospy.ServiceProxy('compute_ik', GetPositionIK)
 
 #rospy.Subscriber('/bmirobot/joint_states', JointState, joint_states_callback)
-pub_markers = rospy.Publisher('visualization_marker', Marker, queue_size=1)
+pub_markers = rospy.Publisher('visualization_marker', Marker, queue_size=1)  # visualize the target points
 pub_ik_target = rospy.Publisher('ik_target', PoseStamped, queue_size=1)
-pub_dr = rospy.Publisher('display_robot_state', DisplayRobotState)
+pub_dr = rospy.Publisher('display_robot_state', DisplayRobotState, queue_size=1)
 joint_pub = rospy.Publisher('/bmirobot/right_group_controller/command', Float64MultiArray, queue_size=1)
 
 rospy.init_node("sample_ik_reachable")
@@ -65,25 +66,23 @@ def get_ik(target, group = "right_arm"):
     """
     :param target:  a PoseStamped give the desired position of the endeffector.
     """
-
-    
     service_request = PositionIKRequest()
     service_request.group_name = group
     service_request.robot_state = initial_state
     service_request.ik_link_name = ENDEFFECTOR
     
     service_request.pose_stamped = target
-    service_request.timeout.secs= 0.1
+    service_request.timeout.secs = 0.1
     service_request.avoid_collisions = False
 
     try:
-        resp = compute_ik(ik_request = service_request)
+        resp = compute_ik(ik_request=service_request)
         return resp
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e
 
 
-def cube(position, ok = True):
+def cube(position, ok=True):
 
     global id
     id += 1
@@ -115,20 +114,20 @@ def generate_pose(csv_file):
     import csv
     pose_list = []
     with open(csv_file,'r') as myFile:
-        lines=csv.reader(myFile)
+        lines = csv.reader(myFile)
         for line in lines:
             pose_list.append([float(line[1]), float(line[2]), float(line[3])])
     
     return pose_list
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     logger.info("Sampling space around " + FRAME)
     rs = DisplayRobotState()
     pose_list = generate_pose(CSV_FILE)
     total_point = len(pose_list)
     success_count = 0
-    global success_count
+
     target = PoseStamped()
     target.header.frame_id = FRAME
     
@@ -137,7 +136,7 @@ if __name__ == "__main__":
     t = tl.getLatestCommonTime("/right_link8", FRAME)
     position, quaternion = tl.lookupTransform(FRAME, "/right_link8", t)
 
-    qx,qy,qz,qw = quaternion
+    qx, qy, qz, qw = quaternion
     target.pose.orientation.x = qx
     target.pose.orientation.y = qy
     target.pose.orientation.z = qz
@@ -162,7 +161,7 @@ if __name__ == "__main__":
 
         pub_ik_target.publish(target)
 
-        print("Checking %s %s %s" %(x,y,z))
+        print("Checking %s %s %s" %(x, y, z))
 
         res = get_ik(target)
         if res.error_code.val != 1:
@@ -174,7 +173,7 @@ if __name__ == "__main__":
             # initial_state = res.solution
             rs.state = res.solution
 
-            position = rs.state.joint_state.position[11:]
+            position = rs.state.joint_state.position[9: 16]
             print(", ".join(str(x) for x in position))
             move_joints(joint_pub, position)
             pub_dr.publish(rs)

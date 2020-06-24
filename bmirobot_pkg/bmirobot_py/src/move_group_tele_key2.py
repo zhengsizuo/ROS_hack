@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Author: Zheng Haosi
 Date: 2020.2.27
@@ -13,7 +14,7 @@ import geometry_msgs.msg
 from math import pi
 from std_msgs.msg import String, Float64MultiArray
 
-motion_step1 = [0, 0, -pi/4, -pi/8, 0, 0, 0]
+motion_step1 = [0, 0, -pi/8, -pi/8, 0, 0, 0]
 motion_step2 = [0, 0, -pi/4+0.05, 0, 0, 0, 0]
 motion_step3 = [0, 0, pi/8, 0, 0, 0, 0]
 motion_step4 = [0]*7
@@ -65,8 +66,8 @@ def main():
   while not rospy.is_shutdown():
 
     if step == 0:
-      print "============ Press `Enter` to begin the motion(press ctrl-d to exit) ..."
-      raw_input()
+      # print "============ Press `Enter` to begin the motion(press ctrl-d to exit) ..."
+      # raw_input()
       rospy.loginfo("Current phase: pre-grasping")
       move_gruop.go_to_joint_state(motion_step1)
 

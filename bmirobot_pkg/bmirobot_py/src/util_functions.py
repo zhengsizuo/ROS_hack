@@ -75,15 +75,16 @@ def test():
 
     joints_list = [0]*7
     count = 0
+    move_joints(joint_pub, joints_list)  # return to initial state
     while not rospy.is_shutdown():
         rospy.loginfo("Start moving!")
-        if count > 2:
+        if count > 3:
             break
-        joints_list[1] = -pi/2 + count*pi/8
-        joints_list[2] = -pi/4 + count*pi/8
+        # joints_list[5] = -pi/2 + count*pi/8
+        joints_list[3] = -pi/4 + count*pi/8
 
         move_hand(grasp_pub, 0.2)
-        # move_joints(joint_pub, joints_list)
+        move_joints(joint_pub, joints_list)
         count += 1
         #rate.sleep()
         rospy.sleep(2)

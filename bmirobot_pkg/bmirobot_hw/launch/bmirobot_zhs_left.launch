@@ -18,9 +18,9 @@
 	 <rosparam param="home_ljoint7">0.0</rosparam>
 	 <rosparam param="home_ljoint8">0.0</rosparam>
 
-     <node name="bmileft_ethernet_driver" pkg="bmirobot_hw" type="bmileft_ethernet_driver" args="1" respawn="true" output="screen" />
+     <node name="bmileft_ethernet_driver" pkg="bmirobot_hw" type="bmileft_ethernet_driver" args="1" respawn="false" output="screen" />
      <!--<node name="bmi_ethernet_driver" pkg="bmirobot_hw" type="bmirobot_ethernet_driver" args="1" respawn="true" output="screen" />-->
-     <node name="bmirobotv51_zhs" pkg="bmirobot_hw" type="bmirobotv51_zhs" args="1" respawn="true" output="screen" />
+     <node name="bmirobotv51_zhs" pkg="bmirobot_hw" type="bmirobotv51_zhs" args="1" respawn="false" output="screen" />
 
 	 <!--node name="bmi_motor_record" pkg="bmirobot_tools" type="record_msg" args="1" respawn="true" output="screen" /-->
 
