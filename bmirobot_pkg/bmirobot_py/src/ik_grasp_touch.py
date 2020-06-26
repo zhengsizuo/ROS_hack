@@ -28,17 +28,29 @@ from visualization_msgs.msg import Marker
 from geometry_msgs.msg import PoseStamped
 from sensor_msgs.msg import JointState
 from std_msgs.msg import String, Float64MultiArray
+from omni_msgs.msg import OmniButtonEvent
 
-from util_functions import move_joints
+from util_functions import move_joints, move_hand
 
 
 class Pose():
     def __init__(self):
         rospy.Subscriber('/phantom/pose', PoseStamped, self.poseCallback, queue_size=1)
+        rospy.Subscriber('/phantom/button', OmniButtonEvent, self.buttonCallback)
+        self.grasp_pub = rospy.Publisher('/bmirobot/right_group_hand_controller/command', Float64MultiArray,
+                                         queue_size=1)
         self.posestamp = PoseStamped()
 
     def poseCallback(self, poseMsg):
         self.posestamp = poseMsg
+
+    def buttonCallback(self, buttonMsg):
+        if buttonMsg.white_button == 1:
+            # 按白键，张开
+            move_hand(self.grasp_pub, 0.4)
+        if buttonMsg.grey_button == 1:
+            # 按灰键，闭合
+            move_hand(self.grasp_pub, -0.3)
 
 
 FRAME = "world"
@@ -114,7 +126,6 @@ def cube(position, ok=True):
     return sheet
 
 
-ik
 if __name__ == "__main__":
     logger.info("Sampling space around " + FRAME)
     rs = DisplayRobotState()
