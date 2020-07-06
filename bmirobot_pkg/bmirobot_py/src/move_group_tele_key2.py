@@ -66,8 +66,8 @@ def main():
   while not rospy.is_shutdown():
 
     if step == 0:
-      # print "============ Press `Enter` to begin the motion(press ctrl-d to exit) ..."
-      # raw_input()
+      print "============ Press `Enter` to begin the motion(press ctrl-d to exit) ..."
+      raw_input()
       rospy.loginfo("Current phase: pre-grasping")
       move_gruop.go_to_joint_state(motion_step1)
 

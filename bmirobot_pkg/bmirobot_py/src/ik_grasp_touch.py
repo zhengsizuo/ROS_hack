@@ -50,7 +50,7 @@ class Pose():
             move_hand(self.grasp_pub, 0.4)
         if buttonMsg.grey_button == 1:
             # 按灰键，闭合
-            move_hand(self.grasp_pub, -0.3)
+            move_hand(self.grasp_pub, -0.6)
 
 
 FRAME = "world"

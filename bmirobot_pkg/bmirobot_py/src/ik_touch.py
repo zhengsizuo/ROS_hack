@@ -114,7 +114,6 @@ def cube(position, ok=True):
     return sheet
 
 
-ik
 if __name__ == "__main__":
     logger.info("Sampling space around " + FRAME)
     rs = DisplayRobotState()

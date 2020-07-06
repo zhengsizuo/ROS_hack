@@ -29,8 +29,8 @@ while True:
     right_data.append(data)
     # last state waiting, current state beginning
     if right_data[-2].values()==[0, 0] and data.values()==[0, 1]:
-        os.system("gnome-terminal -e 'roslaunch bmirobot_hw bmirobot_zhs_two.launch'")
-        time.sleep(5)
+        os.system("gnome-terminal -e 'roslaunch bmirobot_hw bmirobot_zhs_right.launch'")
+        time.sleep(3)
         os.system("gnome-terminal -e 'roslaunch bmirobot_py bmirobot_rviz_control.launch'")
     if right_data[-2].values()==[0, 1] and data.values()==[1, 1]:
         # os.system("gnome-terminal -e 'roslaunch bmirobot_py bmirobot_rviz_control.launch'")
@@ -40,7 +40,7 @@ while True:
 
     # 启动之后才能抓取
     if right_data[-2].values()==[1, 1] and data.values()==[0, 1]:
-        os.system("gnome-terminal -e 'rosnode kill move_group_tele_key2'")
+        os.system("gnome-terminal -e 'rosnode kill ik_touch'")
         print("Kill the tele key node...")
     # last state beginning, current state closing
     if right_data[-2].values()[1]==1 and data.values()==[0, 0]:
