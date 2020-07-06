@@ -9,7 +9,7 @@ A ROS reposity about flexible dual-arm.
 </a>
 <a>
     <img class="course-image" src="Figure/rviz.png">
-</a>
+</a>   
 - [trajectory planning under Moveit Framework: video link](Figure/rviz_gazebo.mp4)
 
 ## Real System
