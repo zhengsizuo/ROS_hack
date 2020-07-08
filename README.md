@@ -7,8 +7,8 @@ A ROS reposity about flexible dual-arm.
 - [trajectory planning under Moveit Framework: video link](https://www.bilibili.com/video/BV1S5411Y7DX/)  
 ![best](Figure/rviz_gazebo.gif) <br />
 <p align="center">
-    <img src="Figure/gazebo.png" width="450", alt="Gazebo" align=center>
-    <img src="Figure/rviz.png" width="450" alt="Rviz" align="center">
+    <img src="Figure/gazebo.png" width="440", alt="Gazebo" align=center>
+    <img src="Figure/rviz.png" width="440" alt="Rviz" align="center"> <br/>
     <i>Gazebo and Rviz<i/>
 </p>  
 
