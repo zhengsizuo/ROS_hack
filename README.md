@@ -24,7 +24,9 @@ A ROS reposity about flexible dual-arm.
         <td ><center><img src="Figure/robot_side.jpg"  width="450">Side face</center></td>
     </tr>
 </table>
-
+<a>
+    <img class="course-image" src="Figure/real_system.gif">
+</a>
 
 ## Tele-operation
 - slave host: **roslaunch omni_common omni_state.launch** &ensp;(ref: [Geomagic 3D touch driver](https://github.com/bharatm11/Geomagic_Touch_ROS_Drivers))  
